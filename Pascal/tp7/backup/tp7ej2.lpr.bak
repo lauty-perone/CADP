@@ -1,0 +1,79 @@
+program tp7ej2;
+type
+  rango=1..6;
+  cadena=string[20];
+  datos=record
+    codCliente:integer;
+    DNI:integer;
+    apellido:cadena;
+    nombre:cadena;
+    poliza:rango;
+    monto:real;
+  end;
+ tabla=array[rango]of real;
+ lista=^nodo
+ nodo=record
+   cliente:datos;
+   sig:lista;
+ end;
+
+ procedure leerCliente(var c:datos);
+ begin
+   with c do begin
+     read(codCliente); read(DNI);read(apellido);
+     read(apellido); read(nombre); read(poliza);
+     read(monto);
+   end;
+ end;
+
+procedure agregarAdelante(var l:lista; c:datos);
+var nue:lista;
+begin
+  new(nue);
+  nue^.cliente:=c;
+  nue^.sig:=l;
+  l:=nue;
+end;
+
+procedure cargarLista(var l:lista);
+var
+  c:datos;
+begin
+  l:=nil;
+  repeat
+    leerCliente(c);
+    agregarAdelante(l,c);
+  until (c.codCliente=1122);
+end;
+
+procedure procesarLista(l:lista;
+
+
+
+
+
+
+
+var
+ l:lista;
+ v:vector;
+
+begin
+ cargarVector(v);{se dispone}
+ cargarLista(l)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

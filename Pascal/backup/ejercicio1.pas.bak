@@ -1,0 +1,165 @@
+program ejercicio1;
+type
+  codG=1..5;
+  datos=record
+    DNI: integer;
+    nombre: string[10];
+    apellido: string[10];
+    edad:integer;
+    codGenero: codG;
+  end;
+lista=^nodo;
+nodo=record
+  persona:datos;
+  sig:lista;
+end;
+vector=array [codG] of integer;
+procedure leerPersona(var d:datos);
+begin
+  with d do begin
+    readln(DNI); readln(nombre);
+    readln(apellido); readln(edad);
+    readln(codGenero);
+  end;
+end;
+
+procedure agregarAdelante(var l:lista; d:datos);
+var
+  nue:lista;
+begin
+  new(nue)
+  nue^.persona:=d;
+  nue^.sig:=l;
+  l:=nue;
+end;
+
+procedure cargarLista(var l:lista);
+var
+  d:datos;
+begin
+  l:=nil;
+ repeat
+   leerPersona(d);
+   agregarAdelante(l,d);
+ until(d.DNI=33555444) ;
+end;
+
+function cumple (DNI: integer): boolena;
+var
+  p,i:integer;
+begin
+ i:=0;
+ p:=0;
+ DNI:=DNI div 10;
+ while (DNI<>0) do begin
+   if (DNI mod 10=0) then
+    p:=p+1;
+   else i:=i+1;
+   DNI:=DNI div 10;
+ end;
+  cumple:= (p>i);
+end;
+procedure incializarVector(var v:vector);
+var i:integer;
+begin
+ for i:=codG do begin
+   v[i]:=0;
+ end;
+end;
+procedure procesarLista(l:lista; var cantP,max1,max2:integer;var v:vector);
+
+begin
+ cantP:=0;
+ while (l<>0) do begin
+   if (cumple(l^.persona.DNI)) then
+     cantP:=cantP+1;
+  v[l^.persona.codGenero]:=v[l^.persona.codGenero]+1;
+   end;
+ end;
+procedure max (v:vector; var max1,max2:integer; imax1,imax2:codG);
+var p:integer;
+begin
+ for p:= codG do begin
+  if (v[p]>max1) then begin
+    max2:=max1;
+    imax2:=imax1;
+    max1:= v[i];
+    imax1:=p;
+  end;
+  else
+   if (max2>v[i]) then begin
+     max2:=v[i];
+     imax2:=p;
+  end;
+ end;
+end;
+procedure BorrarDNI(l:lista;var exito:boolean);
+var
+DNIb:integer;
+ ant:act:lista;
+begin
+ writeln('ESCRIBA UN DNI');
+ readln(DNIb);
+ exito:=false;
+ act:=l;
+ while(act<>nil) and (act^.persona.DNI<>DNIb) do begin
+    ant:=act;
+    act:= act^.sig;
+ end;
+ if(act<>nil) then begin
+   exito:=true
+   if (act=l) then
+     l:=act^.sig
+   else
+     ant^.sig:= act^.sig;
+ dispose(act);
+ end;
+end;
+procedure informar(cantP:integer;imax1,imax2:codG; exito:boolean);
+begin
+ writeln('La cantidad de personas  cuyo DNI contiene más dígitos pares que impares son: ',cantP);
+ writeln ('Los dos codigos de genero mas elegidos son: ',imax1, ' y ', imax2);
+ if (exito=true) then
+   writeln('Se ha borrado el dni escrito correctamente');
+ else
+ writeln('No se ha borrado el dni escrito');
+ readln();
+
+ end;
+var
+  l:lista;
+  cantP, max1,max2:integer;
+  imax1,imax2:codG;
+  v:vector;
+begin
+  incializarVector(v);
+  cargarLista(l);
+  procesarLista(l,cantP,v);
+  max(v,max1,max2,imax1,imax2);
+  BorrarDNI(l);
+  informar(cantP,imax1,imax2);
+end;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

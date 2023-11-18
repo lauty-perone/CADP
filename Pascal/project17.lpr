@@ -1,0 +1,72 @@
+program project17;
+const
+  precio= 320;
+type
+ cadena=string[20];
+procedure leer_datos(var ha, zona: integer; var localidad: cadena);
+begin
+ writeln('Ingrese las hectareas, la localidad y el tipo de zona(1: zona muy fertil, 2: zona estandar o 3: zona arida) del campo');
+  readln(ha);
+  readln(localidad);
+  readln(zona);
+end;
+
+procedure rendi (ha,zona:integer; var rend:real);
+begin
+  if (zona=1) then
+    rend:=6 * precio *ha
+  else                             {puede ser un case}
+    if (zona=2) then
+    rend:= 2.6* precio *ha
+   else
+     if (zona=3) then
+     rend:= 1.4 * precio *ha
+end;
+procedure imprimir( campos:integer; localidad_max,localidad_min: cadena);
+ begin
+  writeln('La cantidad total de campos de Tres de Febrero con un rendimiento mayor a 10000 son: ', campos);
+ writeln('La localidad del campo con mayor rendimiento economico es: ', localidad_max);
+ writeln('La localidad del campo con menor rendimiento economico es: ', localidad_min);
+ writeln('PRESIONE ENTER PARA FINALIZAR');
+ readln();
+ end;
+procedure maximo(var max:real; rend:real; localidad:cadena; var localidad_max:cadena);
+begin
+    if (rend>max)then begin
+      max:=rend;
+     localidad_max:=localidad;                                             {los procesos hacen una tarea en especifico}
+     end;
+end;
+procedure minimo (var min:real; rend:real; localidad:cadena; var localidad_min:cadena);
+begin
+ if (rend<min) then begin
+      min:=rend;
+      localidad_min:=localidad;
+     end;
+end;
+procedure calcular_campo(localidad:cadena; rend:real; var campos:integer);
+begin
+ if (localidad='Tres de Febrero') and (rend>10000) then
+      campos:= campos+1;
+end;
+ var
+   zona,ha,campos: integer;
+   localidad,localidad_max,localidad_min:cadena;
+   max,min,rend: real;
+begin
+  campos:=0;
+  rend:=0;
+  min:=99999;
+  max:=0;
+
+  repeat
+   leer_datos (ha,zona,localidad);
+   rendi (ha, zona,rend);
+   maximo(max,rend,localidad,localidad_max);
+   minimo(min,rend,localidad,localidad_min);
+   calcular_campo(localidad,rend,campos);
+
+ until(ha=900)and (localidad='Saladillo');
+ imprimir(campos,localidad_max,localidad_min);
+end.
+

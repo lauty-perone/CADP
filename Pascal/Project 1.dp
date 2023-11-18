@@ -1,0 +1,11 @@
+[Project]
+FileName=C:\Users\kanji\Documents\Project 1.dp
+Name=Project 1
+MainUnit=Untitled2
+UnitCount=1
+ResFiles=C:\Users\kanji\Documents\rsrc.rc
+NoConsole=1
+IsDll=0
+Icon=C:\Dev-Pas\bin\Mainicon.ico
+[Unit1]
+FileName=Untitled2

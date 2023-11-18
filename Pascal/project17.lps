@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="1">
+      <Unit0>
+        <Filename Value="project17.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="project17"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="46"/>
+        <CursorPos X="37" Y="59"/>
+        <UsageCount Value="23"/>
+        <Loaded Value="True"/>
+      </Unit0>
+    </Units>
+    <General>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <JumpHistory Count="6" HistoryIndex="5">
+      <Position1>
+        <Filename Value="project17.lpr"/>
+        <Caret Line="31" Column="35" TopLine="20"/>
+      </Position1>
+      <Position2>
+        <Filename Value="project17.lpr"/>
+        <Caret Line="22" Column="6" TopLine="10"/>
+      </Position2>
+      <Position3>
+        <Filename Value="project17.lpr"/>
+        <Caret Line="18" Column="12" TopLine="5"/>
+      </Position3>
+      <Position4>
+        <Filename Value="project17.lpr"/>
+        <Caret Line="21" Column="24" TopLine="5"/>
+      </Position4>
+      <Position5>
+        <Filename Value="project17.lpr"/>
+        <Caret Line="59" Column="24" TopLine="38"/>
+      </Position5>
+      <Position6>
+        <Filename Value="project17.lpr"/>
+        <Caret Line="66" Column="42" TopLine="45"/>
+      </Position6>
+    </JumpHistory>
+  </ProjectSession>
+</CONFIG>

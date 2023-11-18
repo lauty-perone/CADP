@@ -1,0 +1,73 @@
+program project1;
+type
+ cadena= string [20];
+ centro=record
+   nombre:cadena;
+   universidad:cadena;
+   cantInv: integer;
+   cantBec: integer;
+ end;
+procedure leer_centro(var c: centro);
+begin
+ with c do begin
+     write('Escriba la cantidad de investigadores que posee: ');
+     readln(cantInv);
+     if (cantInv<>0) then begin
+         write('Escriba el nombre del centro: ');
+         readln (nombre);
+         write ('Escriba la universidad a la que pertenece: ');
+         readln (universidad);
+         write ('Escriba la cantidad de becarios que posee: ');
+         readln (cantBec);
+  end;
+end
+procedure dosCentrosMax (c:centro; var centro1,centro2: cadena);
+var
+ max1,max2:integer;
+begin
+ max1:=0;
+ max2:=0;
+ if (c.cantBec>max1)then begin
+      max2:=max1;
+      centro2:=centro1;
+      max1:=c.cantBec;
+      centro1:=c.nombre;
+  end else
+ if (c.cantBec>max2)then begin
+      max2:=c.cantBec;
+      centro2:=c.nombre;
+ end;
+end;
+procedure imprimir(centro1,centro2,maxUni:cadena);
+begin
+ writeln('La universidad con mayor cantidad de investigadores es: ',maxUni);
+ writeln('El centro con mayor cantidad de becarios es: ',centro2 ,' y el segundo con mayor cantidad es: ',centro1);
+ writeln('-PRESIONE ENTER PARA FINALIZAR-');
+ readln();
+end;
+var
+  max,totalC,maxUniversidad:integer;
+  centro1,centro2,universidadActual,maxUni:cadena;
+  c:centro;
+begin
+ max:=0;
+ leer_centro(c);
+ while (c.cantInv<>0) do begin
+   universidadActual:= c.universidad;
+   totalC:=0;
+   maxUniversidad:=0;
+   while (c.universidad=universidadActual) do begin
+     totalC:=totalC+1;
+     maxUniversidad:=maxUniversidad+c.cantInv;
+     dosCentrosMax(c,centro1,centro2);
+     leer_centro(c);
+    end;
+   writeln('La cantidad de centros que tiene la universidad  ', universidadActual,'es:  ', totalC);
+   if (maxUniversidad>max) then begin
+      max:=maxUniversidad;
+      maxUni:=universidadActual;
+      end;
+ end;
+ imprimir (centro1,centro2,maxUni);
+end.
+
